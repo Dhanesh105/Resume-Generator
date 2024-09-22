@@ -1,86 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Resume generator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="scriptsheet" href="script.js">
-  </head>
-  <body class="full">
-    <div class="container">
-      <h1 class="text-center my-3">Resume generator</h1>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
 
-      <div class="row">
-        <div class="col-md-6">
-          <h3>Personal information</h3>
-          <div class="form-group">
-            <label for="namefield">Your Name</label>
-            <input type="text" id="namefield" placeholder="Enter here" class="form-control">
-          </div>
+<div class="container">
+  <h2>Resume Generator</h2>
+  <form id="resumeForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+  
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+  
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required>
+  
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" required></textarea>
+  
+    <label for="summary">Summary:</label>
+    <textarea id="summary" name="summary" required></textarea>
+  
+    <label for="experience">Experience:</label>
+    <textarea id="experience" name="experience" required></textarea>
+  
+    <label for="education">Education:</label>
+    <textarea id="education" name="education" required></textarea>
+  
+    <button type="button" onclick="generateResume()">Generate Resume</button>
+  </form>
 
-          <div class="form-group mt-2">
-            <label for="contactfield">Your Contact Number</label>
-            <input type="text" id="contactfield" placeholder="Enter here" class="form-control">
-          </div>
+  <div id="generatedResume" style="display: none;">
+    <h2>Generated Resume</h2>
+    <p><strong>Name:</strong> <span id="generatedName"></span></p>
+    <p><strong>Email:</strong> <span id="generatedEmail"></span></p>
+    <p><strong>Phone:</strong> <span id="generatedPhone"></span></p>
+    <p><strong>Address:</strong> <span id="generatedAddress"></span></p>
+    <p><strong>Summary:</strong> <span id="generatedSummary"></span></p>
+    <p><strong>Experience:</strong> <span id="generatedExperience"></span></p>
+    <p><strong>Education:</strong> <span id="generatedEducation"></span></p>
+  </div>
+</div>
 
-          <div class="form-group mt-2">
-            <label for="addressfield">Your Address</label>
-            <textarea id="addressfield" placeholder="Enter here" class="form-control" rows="5"></textarea>
-          </div>
+<script>
+  function generateResume() {
+    var formData = new FormData(document.getElementById("resumeForm"));
+    var generatedResume = document.getElementById("generatedResume");
 
-          <p class="text-secondary my-3">Important links</p>
+    document.getElementById("generatedName").innerText = formData.get("name");
+    document.getElementById("generatedEmail").innerText = formData.get("email");
+    document.getElementById("generatedPhone").innerText = formData.get("phone");
+    document.getElementById("generatedAddress").innerText = formData.get("address");
+    document.getElementById("generatedSummary").innerText = formData.get("summary");
+    document.getElementById("generatedExperience").innerText = formData.get("experience");
+    document.getElementById("generatedEducation").innerText = formData.get("education");
 
-          <div class="form-group mt-2">
-            <label for="twitterfield">Twitter</label>
-            <input type="text" id="twitterfield" placeholder="Enter here" class="form-control">
-          </div>
-          
-          <div class="form-group mt-2">
-            <label for="linkedfield">Linked</label>
-            <input type="text" id="linkedfield" placeholder="Enter here" class="form-control">
-          </div>
-          
-          <div class="form-group mt-2">
-            <label for="instafield">Instagram</label>
-            <input type="text" id="instafield" placeholder="Enter here" class="form-control">
-          </div>
+    generatedResume.style.display = "block";
+  }
+</script>
 
-        </div>
-        <div class="col-md-6">
-          <h3>Professional information</h3>
-          
-          <div class="form-group mt-2">
-            <label for="">Objective</label>
-            <textarea placeholder="Enter here" class="form-control" ></textarea>
-          </div>
-
-          <div class="form-group mt-2">
-            <label for="">Work Experience</label>
-            <textarea placeholder="Enter here" class="form-control wefield"></textarea>
-          </div>
-
-          <div class="container text-center mt-3" id="weaddbutton">
-            <button class="btn btn-primaty btn-sm" style="background-color: rgb(221, 94, 100);">Add</button>
-          </div>
-
-          <div class="form-group mt-2">
-            <label for="">Acadamic Qualification</label>
-            <textarea placeholder="Enter here" class="form-control eqfield"></textarea>
-          </div>
-
-          <div class="container text-center mt-3" id="aaddbutton">
-            <button onclick="addnewWEField" class="btn btn-primaty btn-sm" style="background-color: rgb(221, 94, 100);">Add</button>
-          </div>
-        </div>
-      </div>
-      <div class="container text-center mt-3">
-        <button class="btn btn-primaty btn-lg" style="background-color: rgb(226, 94, 101);">Generate CV</button>
-      </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>
